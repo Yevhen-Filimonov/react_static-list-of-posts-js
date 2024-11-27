@@ -8,16 +8,17 @@ import { PostList } from './components/PostList';
 export const App = () => {
   const posts = postsFromServer.map(post => {
     const postUser = usersFromServer.find(user => user.id === post.userId);
-    const comments = commentsFromServer.filter(comment => comment.postId === post.id);
+    const comments = commentsFromServer.filter(
+      comment => comment.postId === post.id,
+    );
+
     return { ...post, user: postUser, comments };
   });
 
   return (
     <section className="App">
       <h1 className="App__title">Static list of posts</h1>
-      <div className="PostList">
-        <PostList posts={posts} />
-      </div>
+      <PostList posts={posts} />
     </section>
   );
 };
